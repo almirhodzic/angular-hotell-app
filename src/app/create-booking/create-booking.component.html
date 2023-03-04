@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-header">Create New Booking</div>
+    <div class="card-body">
+        <form>
+            <div class="row mb-2">
+                <div class="col">
+                    <!-- Id -->
+                    <label for="Id" class="form-label">Id</label>
+                    <input type="number" class="form-control" [(ngModel)]="booking.id" name="Id">
+                </div>
+        
+                <div class="col">
+                    <!-- RoomNumber -->
+                    <label for="RoomNumber" class="form-label">RoomNumber</label>
+                    <input type="number" class="form-control" [(ngModel)]="booking.roomnumber" name="roomnumber">
+                </div>
+            </div>
+        
+            <div class="row mb-2">
+                <div class="col">
+                    <!-- Name -->
+                    <label for="Name" class="form-label">Guest Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="booking.name" name="name">
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col">
+                    <!-- StartDate -->
+                    <label for="Start Date" class="form-label" name="StartDate">Start Date</label>
+                    <input type="date" class="form-control" [value]="booking.startDate | date:'yyyy-MM-dd'" (input)="dateChanged($event, true)">
+                </div>
+        
+                <div class="col">
+                    <!-- EndDate -->
+                    <label for="End Date" class="form-label" name="EndDate">End Date</label>
+                    <input type="date" class="form-control" [value]="booking.endDate | date:'yyyy-MM-dd'" (input)="dateChanged($event, false)">
+                </div>
+            </div>   
+        </form>
+    </div>
+    <div class="card-footer">
+        <button (click)="save()" class="btn btn-primary">Submit</button>
+    </div>
+</div>
