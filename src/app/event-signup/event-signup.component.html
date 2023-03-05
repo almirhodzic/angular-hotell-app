@@ -1,0 +1,19 @@
+<form #formSignUp="ngForm">
+    <div class="card">
+        <div class="card-header">
+            Event Benachrichtung
+        </div>
+    
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <input required type="text" class="form-control" placeholder="Bitte E-Mail Adresse eintragen">
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <button [disabled]="formSignUp.invalid" (click)="onSubmit()" class="btn btn-primary">Eintragen</button>
+        </div>
+    </div>
+</form>
