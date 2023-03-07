@@ -10,11 +10,7 @@
                     <input #inputEmail="ngModel" minlength="8" email name="signupMail" [(ngModel)]="signupMail" type="text" class="form-control" placeholder="Bitte E-Mail Adresse eintragen" required>
                 </div>
             </div>
-            <div class="row mb-2">
-                <div class="col">
-                    <small class="text-muted">Das ist eine Demo! Die Eingabe wird nicht gespeichert!</small>
-                </div>
-            </div>
+
             <div *ngIf="inputEmail.invalid && (inputEmail.touched || inputEmail.dirty)" class="row">
                 <div class="col">
                     <div *ngIf="inputEmail.errors?.['required']" class="alert alert-danger">
@@ -33,10 +29,8 @@
 
         </div>
 
-        <div class="card-footer d-flex justify-content-between">
-            <button [disabled]="formSignup.invalid" (click)="onSubmit()" class="btn btn-primary">E-Mail Adresse eintragen</button>
-            <button  routerLink="/bookings" class="btn btn-secondary p-2">Abbrechen</button>
+        <div class="card-footer">
+            <button [disabled]="formSignup.invalid" (click)="onSubmit()" class="btn btn-primary">Eintragen</button>
         </div>
-
     </div>
 </form>

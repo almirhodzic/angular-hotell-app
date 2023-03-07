@@ -1,45 +1,52 @@
-<div class="card bg-light">
-    <div class="card-header">Create New Booking</div>
+<div class="card bg-dark text-white">
+    <div class="card-header"><h5>Booking speichern</h5></div>
+    <form [formGroup]="bookingForm" (ngSubmit)="save()">
     <div class="card-body">
-        <form>
-            <div class="row mb-2">
-                <div class="col">
-                    <!-- Id -->
-                    <label for="Id" class="form-label">Id</label>
-                    <input type="number" class="form-control" [(ngModel)]="booking.id" name="Id">
-                </div>
-        
-                <div class="col">
-                    <!-- RoomNumber -->
-                    <label for="RoomNumber" class="form-label">RoomNumber</label>
-                    <input type="number" class="form-control" [(ngModel)]="booking.roomnumber" name="roomnumber">
-                </div>
+        <div class="row mb-2">
+            <div class="col">
+                <small class="text-muted">Alle Felder (*) müssen ausgefüllt sein</small>
             </div>
-        
-            <div class="row mb-2">
-                <div class="col">
-                    <!-- Name -->
-                    <label for="Name" class="form-label">Guest Name</label>
-                    <input type="text" class="form-control" [(ngModel)]="booking.name" name="name">
-                </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col">
+                <!-- Id -->
+                <label for="Id" class="form-label">Booking-Id*</label>
+                <input type="number" class="form-control" formControlName="id" placeholder="Zahl eingeben">
             </div>
-        
-            <div class="row">
-                <div class="col">
-                    <!-- StartDate -->
-                    <label for="Start Date" class="form-label" name="StartDate">Start Date</label>
-                    <input type="date" class="form-control" [value]="booking.startDate | date:'yyyy-MM-dd'" (input)="dateChanged($event, true)">
-                </div>
-        
-                <div class="col">
-                    <!-- EndDate -->
-                    <label for="End Date" class="form-label" name="EndDate">End Date</label>
-                    <input type="date" class="form-control" [value]="booking.endDate | date:'yyyy-MM-dd'" (input)="dateChanged($event, false)">
-                </div>
-            </div>   
-        </form>
+
+            <div class="col">
+                <!-- RoomNumber -->
+                <label for="roomNumber" class="form-label">Zimmer*</label>
+                <input type="number" class="form-control" formControlName="roomNumber" placeholder="Nummer eingeben">
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col">
+                <!-- Name -->
+                <label for="Name" class="form-label">Gast Name, Vorname*</label>
+                <input type="text" class="form-control" formControlName="name" placeholder="Name und Vorname eingeben">
+                <label class="text-warning mt-2" *ngIf="bookingForm.get('name')?.hasError('minlength')">Der Name ist zu kurz</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <!-- StartDate -->
+                <label for="Start Date" class="form-label" name="StartDate">Start Datum*</label>
+                <input type="date" class="form-control" formControlName="startDate" [value]="booking.startDate | date:'yyyy-MM-dd'" (input)="dateChanged($event, true)">
+            </div>
+
+            <div class="col">
+                <!-- EndDate -->
+                <label for="End Date" class="form-label" name="EndDate">End Datum*</label>
+                <input type="date" class="form-control" formControlName="endDate" [value]="booking.endDate | date:'yyyy-MM-dd'" (input)="dateChanged($event, false)">
+            </div>
+        </div>   
     </div>
-    <div class="card-footer">
-        <button (click)="save()" class="btn btn-primary">Submit</button>
+    <div class="card-footer d-flex justify-content-between">
+        <button [disabled]="bookingForm.invalid" class="btn btn-primary p-2" type="submit">Booking speichern</button>
+        <button  routerLink="/bookings" class="btn btn-secondary p-2">Abbrechen</button>
     </div>
+</form>
 </div>
